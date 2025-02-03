@@ -1,0 +1,29 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="275dp"
+        android:layout_height="295dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/carefinder_logo"
+        android:layout_marginBottom="48dp" />
+
+    <!-- Get Started Button -->
+    <Button
+        android:id="@+id/buttonGetStarted"
+        android:backgroundTint="#F2529A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

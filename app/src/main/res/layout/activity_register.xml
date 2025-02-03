@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="158dp"
+        android:layout_height="152dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/carefinder_logo" />
+
+    <!-- Full Name EditText -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Confirm Password EditText -->
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Birthdate EditText -->
+    <EditText
+        android:id="@+id/editTextBirthdate"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_marginBottom="24dp"
+        android:hint="Birthdate (YYYY-MM-DD)"
+        android:inputType="date"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Register Button -->
+    <Button
+        android:id="@+id/buttonRegister"
+        android:backgroundTint="#F2529A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:padding="12dp"
+        android:textSize="16sp" />
+</LinearLayout>
+
+
+
+

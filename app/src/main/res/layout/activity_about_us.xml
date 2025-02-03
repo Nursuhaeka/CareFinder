@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout to properly position Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:background="#F8A3C7"
+        android:layout_height="100dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- Full-width Toolbar with Back Button slightly lower -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="446dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#F8A3C7"
+            android:elevation="4dp"
+            android:paddingTop="6dp"
+            android:title="@string/about_us"
+            android:titleTextColor="#000"
+            app:contentInsetStart="12dp"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- NestedScrollView for Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF">
+
+            <!-- App Description -->
+            <TextView
+                android:id="@+id/textViewPurposeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CareFinder is an innovative mobile application designed to simplify the process of locating healthcare facilities and services."
+                android:textSize="14sp"
+                android:layout_marginBottom="18dp"
+                android:justificationMode="inter_word"
+                android:gravity="start"/>
+
+            <!-- Developers Title -->
+            <TextView
+                android:id="@+id/textViewTeam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Developers"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Developer Members -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Member 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewMember1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/member1_photo"
+                        android:contentDescription="Nursuhaeka Photo"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewMember1Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nursuhaeka binti Muhammad Tang\nStudent Number: 2022449808\nProgramme Code: CS240"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+
+                <!-- Member 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewMember2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/member2_photo"
+                        android:contentDescription="Nurul Izzati Photo"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewMember2Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nurul Izzati binti Sidi Hamat\nStudent Number: 2022868332\nProgramme Code: CS240"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+
+                <!-- Member 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewMember3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/member3_photo"
+                        android:contentDescription="Nik Nur'Iffah Nadhirah Photo"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewMember3Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nik Nur'Iffah Nadhirah binti Nik Azman\nStudent Number: 2022605228\nProgramme Code: CS240"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+
+                <!-- Member 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewMember4"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/member4_photo"
+                        android:contentDescription="Arissa Natiera Photo"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewMember4Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Arissa Natiera binti Rusuhaidi\nStudent Number: 2022269816\nProgramme Code: CS240"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Copyright and GitHub URL -->
+            <TextView
+                android:id="@+id/textViewCopyright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Copyright © 2025 CareFinder Team. All rights reserved."
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewGitHub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Visit Our GitHub Page"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:onClick="openGitHubPage" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

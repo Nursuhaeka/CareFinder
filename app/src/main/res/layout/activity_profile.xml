@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout for Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#F8A3C7"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- Toolbar -->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Profile Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF">
+
+            <!-- Profile Image -->
+            <ImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/default_profile_image"
+                android:contentDescription="Profile Image"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop"/>
+
+            <!-- Upload Image Button -->
+            <Button
+                android:id="@+id/uploadImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Profile Image"
+                android:backgroundTint="#F2529A"
+                android:layout_gravity="center"/>
+
+            <!-- Name TextView -->
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
+
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Name"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Email TextView -->
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"/>
+
+            <!-- Birthdate TextView and EditText -->
+            <TextView
+                android:id="@+id/birthdateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birthdate"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/birthdateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your birthdate"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Save Changes Button -->
+            <Button
+                android:id="@+id/saveChangesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Changes"
+                android:backgroundTint="#F2529A"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#F8A3C7"
+        android:title="Profile"
+        android:titleTextColor="#000"
+        app:layout_anchor="@+id/appBarLayout2"
+        app:layout_anchorGravity="center"
+        app:navigationIcon="@drawable/ic_back_arrow"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

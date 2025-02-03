@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CareFinder</string>
+    <string name="member1_photo">Nursuhaeka Photo</string>
+    <string name="member2_photo">Nurul Izzati Photo</string>
+    <string name="member3_photo">Nik Nur\'Iffah Nadhirah Photo</string>
+    <string name="member4_photo">Arissa Natiera Photo</string>
+    <string name="about_us">About Us</string>
+</resources>

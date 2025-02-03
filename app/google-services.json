@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "908200824756",
+    "project_id": "carefinder-61b8a",
+    "storage_bucket": "carefinder-61b8a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908200824756:android:1b3885ed525b15fffbace1",
+        "android_client_info": {
+          "package_name": "com.example.carefinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW-zxuk6T_XWQqQda8omWRDZ5QxrJoG8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
