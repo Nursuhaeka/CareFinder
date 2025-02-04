@@ -22,6 +22,23 @@
             padding: 20px;
         }
 
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff4d94; /* Pink background */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .logout-btn:hover {
+            background-color: #e63946; /* Darker pink on hover */
+        }
+
         table {
             width: 98%; /* Increased the table width to 98% */
             margin: 20px auto;
@@ -63,6 +80,8 @@
     </style>
 </head>
 <body>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
 
     <h1>CareFinder - User Locations</h1>
     
@@ -161,6 +180,11 @@
                 userTableBody.innerHTML = "<tr><td colspan='5'>No location data available</td></tr>";
             }
         });
+
+        // Logout function to redirect to login page
+        function logout() {
+            window.location.href = "login.html";
+        }
     </script>
 </body>
 </html>
