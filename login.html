@@ -76,9 +76,9 @@
     </div>
 
     <script>
-        // Simulated login credentials
-        const validUsername = "user";
-        const validPassword = "password123";
+        // Simulated login credentials (This can be modified to match with Firebase)
+        const validUsername = "admin";
+        const validPassword = "admin123";
 
         // Function to handle login
         function login() {
@@ -88,19 +88,13 @@
 
             // Validate credentials
             if (username === validUsername && password === validPassword) {
-                // Save login state to localStorage (or could use sessionStorage for session-based)
+                // Save login state and role to localStorage
                 localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("isAdmin", "true");  // Store admin status as 'true'
                 window.location.href = "index.html"; // Redirect to index page
             } else {
                 // Show error message
                 errorMessage.style.display = "block";
-            }
-        }
-
-        // Optionally, auto-login if already logged in (based on localStorage)
-        window.onload = function() {
-            if (localStorage.getItem("loggedIn") === "true") {
-                window.location.href = "index.html"; // Redirect to index if already logged in
             }
         }
     </script>

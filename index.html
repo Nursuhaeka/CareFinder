@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareFinder - User Locations</title>
-
+    
     <!-- Google Font for aesthetics -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -20,23 +20,17 @@
         h1 {
             color: #d63384; /* Dark pink */
             padding: 20px;
+            margin: 0;
+            flex: 1; /* Allow h1 to take available space */
         }
 
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #ff4d94; /* Pink background */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .logout-btn:hover {
-            background-color: #e63946; /* Darker pink on hover */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         table {
@@ -77,15 +71,24 @@
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
         }
+
+        button {
+            padding: 10px 20px;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Logout Button -->
-    <button class="logout-btn" onclick="logout()">Logout</button>
-
-    <h1>CareFinder - User Locations</h1>
-
+    <div class="header-container">
+        <h1>CareFinder - User Locations</h1>
+        <button id="logoutButton">Logout</button>
+    </div>
+    
     <div class="container">
         <table id="userTable">
             <thead>
@@ -98,27 +101,21 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Data will be inserted dynamically -->
             </tbody>
         </table>
     </div>
 
     <script type="module">
-        // Check if the user is logged in
-        if (localStorage.getItem("loggedIn") !== "true") {
-            window.location.href = "login.html"; // Redirect to login page if not logged in
-        }
-
-        // Function to handle logout
-        function logout() {
-            localStorage.removeItem("loggedIn"); // Remove login state from localStorage
-            window.location.href = "login.html"; // Redirect to login page
-        }
-
         // Import the necessary functions from Firebase SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+
+        // Check if the user is logged in and if they are an admin
+        if (localStorage.getItem("loggedIn") !== "true" || localStorage.getItem("isAdmin") !== "true") {
+            // Redirect to login page if not logged in or not an admin
+            window.location.href = "login.html";
+        }
 
         // Firebase config
         const firebaseConfig = {
@@ -144,15 +141,17 @@
         const userLocationsRef = ref(database, 'user_locations');
         const usersRef = ref(database, 'users');
 
-        // Object to store user names
+        // Object to store user names and user-agent
         let userNames = {};
+        let userAgents = {};
 
-        // Fetch all user names from Firebase Realtime Database (/users)
+        // Fetch all user names and user-agents from Firebase Realtime Database (/users)
         onValue(usersRef, (snapshot) => {
             const usersData = snapshot.val();
             if (usersData) {
                 for (const userId in usersData) {
                     userNames[userId] = usersData[userId].name || "Unknown User";
+                    userAgents[userId] = usersData[userId].userAgent || "Unknown User-Agent";
                 }
             }
         });
@@ -166,14 +165,14 @@
                 for (const userId in data) {
                     const userData = data[userId];
 
-                    // Get the user's name from the stored userNames object
+                    // Get the user's name and user-agent from the stored userNames and userAgents objects
                     const userName = userNames[userId] || "(No Name Provided)";
+                    const userAgent = userAgents[userId] || "(No User-Agent Provided)";
 
                     // Extract user location data
                     const latitude = userData.latitude || "N/A";
                     const longitude = userData.longitude || "N/A";
                     const timestamp = userData.timestamp ? new Date(userData.timestamp).toLocaleString() : "No Timestamp";
-                    const userAgent = navigator.userAgent; // Capture user-agent from the browser
 
                     // Create table row using template literals
                     const row = `
@@ -192,6 +191,22 @@
                 userTableBody.innerHTML = "<tr><td colspan='5'>No location data available</td></tr>";
             }
         });
+
     </script>
+
+    <!-- Logout Button -->
+    <script>
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            // Remove login state from localStorage
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('isAdmin');
+            
+            // Redirect to login page after logout
+            window.location.href = 'login.html'; // Adjust the URL to your login page
+        });
+    </script>
+
 </body>
 </html>
