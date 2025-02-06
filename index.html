@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareFinder - User Locations</title>
+    
+    <!-- Google Font for aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffe6f2; /* Light pink background */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #d63384; /* Dark pink */
+            padding: 20px;
+            margin: 0;
+            flex: 1; /* Allow h1 to take available space */
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 98%; /* Increased the table width to 98% */
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 20px; /* Increased padding for more spacious cells */
+            border-bottom: 1px solid #f8a1c1;
+        }
+
+        th {
+            background-color: #ff99cc;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffe6f2;
+        }
+
+        tr:hover {
+            background-color: #ffccdd;
+            transition: 0.3s;
+        }
+
+        .container {
+            max-width: 1200px; /* Increased max-width for the container */
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>CareFinder - User Locations</h1>
+        <button id="logoutButton">Logout</button>
+    </div>
+    
+    <div class="container">
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Date & Time</th>
+                    <th>User-Agent</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module">
+        // Import the necessary functions from Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+
+        // Check if the user is logged in and if they are an admin
+        if (localStorage.getItem("loggedIn") !== "true" || localStorage.getItem("isAdmin") !== "true") {
+            // Redirect to login page if not logged in or not an admin
+            window.location.href = "login.html";
+        }
+
+        // Firebase config
+        const firebaseConfig = {
+          apiKey: "AIzaSyB2PzDvfVB-Lob-kjoD9FYAiEO_nhXwsV8",
+          authDomain: "carefinder-61b8a.firebaseapp.com",
+          databaseURL: "https://carefinder-61b8a-default-rtdb.firebaseio.com",
+          projectId: "carefinder-61b8a",
+          storageBucket: "carefinder-61b8a.firebasestorage.app",
+          messagingSenderId: "908200824756",
+          appId: "1:908200824756:web:9b4c3addd59163e6fbace1",
+          measurementId: "G-5DH5DN0YNS"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Table element
+        const userTableBody = document.querySelector("#userTable tbody");
+
+        // Refs to Firebase nodes
+        const userLocationsRef = ref(database, 'user_locations');
+        const usersRef = ref(database, 'users');
+
+        // Object to store user names and user-agent
+        let userNames = {};
+        let userAgents = {};
+
+        // Fetch all user names and user-agents from Firebase Realtime Database (/users)
+        onValue(usersRef, (snapshot) => {
+            const usersData = snapshot.val();
+            if (usersData) {
+                for (const userId in usersData) {
+                    userNames[userId] = usersData[userId].name || "Unknown User";
+                    userAgents[userId] = usersData[userId].userAgent || "Unknown User-Agent";
+                }
+            }
+        });
+
+        // Fetch user locations from Firebase Realtime Database
+        onValue(userLocationsRef, (snapshot) => {
+            userTableBody.innerHTML = ""; // Clear previous data
+            const data = snapshot.val();
+
+            if (data) {
+                for (const userId in data) {
+                    const userData = data[userId];
+
+                    // Get the user's name and user-agent from the stored userNames and userAgents objects
+                    const userName = userNames[userId] || "(No Name Provided)";
+                    const userAgent = userAgents[userId] || "(No User-Agent Provided)";
+
+                    // Extract user location data
+                    const latitude = userData.latitude || "N/A";
+                    const longitude = userData.longitude || "N/A";
+                    const timestamp = userData.timestamp ? new Date(userData.timestamp).toLocaleString() : "No Timestamp";
+
+                    // Create table row using template literals
+                    const row = `
+                        <tr>
+                            <td>${userName}</td>
+                            <td>${timestamp}</td>
+                            <td>${userAgent}</td>
+                            <td>${latitude}</td>
+                            <td>${longitude}</td>
+                        </tr>
+                    `;
+
+                    userTableBody.innerHTML += row;
+                }
+            } else {
+                userTableBody.innerHTML = "<tr><td colspan='5'>No location data available</td></tr>";
+            }
+        });
+
+    </script>
+
+    <!-- Logout Button -->
+    <script>
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            // Remove login state from localStorage
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('isAdmin');
+            
+            // Redirect to login page after logout
+            window.location.href = 'login.html'; // Adjust the URL to your login page
+        });
+    </script>
+
+</body>
+</html>
